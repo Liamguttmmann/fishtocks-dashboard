@@ -24,28 +24,28 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section id="como-funciona" className="bg-slate-900/60 py-16">
+    <section id="como-funciona" className="bg-slate-100/80 py-16 transition-colors dark:bg-slate-900/60">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="text-center text-3xl font-semibold text-white sm:text-4xl">Como funciona na prática?</h2>
+        <h2 className="text-center text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-white">Como funciona na prática?</h2>
         <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {steps.map((step, index) => (
             <article
               key={step.title}
-              className={`group flex flex-col rounded-3xl border border-slate-800/70 bg-slate-950/70 p-6 text-slate-200 shadow transition-transform duration-200 hover:-translate-y-1 hover:shadow-xl ${
-                step.highlight ? 'border-mint/60 bg-slate-950/90 shadow-lg' : ''
+              className={`group flex flex-col rounded-3xl border border-slate-200 bg-white/90 p-6 text-slate-700 shadow transition-transform duration-200 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800/70 dark:bg-slate-950/70 dark:text-slate-200 ${
+                step.highlight ? 'border-mint/60 bg-mint/5 shadow-lg dark:bg-slate-950/90' : ''
               }`}
             >
               <div
                 className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold ${
                   step.highlight
                     ? 'bg-mint/20 text-mint ring-2 ring-inset ring-mint/40'
-                    : 'bg-slate-800 text-slate-200'
+                    : 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-200'
                 }`}
               >
                 {index + 1}
               </div>
-              <h3 className="text-lg font-semibold text-white">{step.title}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-slate-300">{step.description}</p>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{step.title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{step.description}</p>
             </article>
           ))}
         </div>
