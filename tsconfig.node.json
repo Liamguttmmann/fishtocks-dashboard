@@ -4,7 +4,10 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "skipLibCheck": true
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "node.shim.d.ts"]
 }
