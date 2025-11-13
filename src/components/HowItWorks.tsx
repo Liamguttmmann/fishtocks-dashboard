@@ -1,53 +1,65 @@
-const steps = [
+const highlights = [
   {
-    title: 'Passo 1 – Fazemos sua triagem financeira (leva menos de 1 minuto)',
-    description:
-      'Você responde 6 perguntas simples sobre renda, objetivos, estabilidade financeira e tolerância ao risco. Com isso criamos seu Perfil de Aderência ao Investidor, que será a base da sua carteira personalizada.',
-    highlight: true,
+    title: 'Triagem inteligente',
+    summary: 'Coletamos suas respostas sobre objetivos, horizonte e tolerância a risco em poucos cliques.',
+    detail:
+      'O algoritmo cruza os dados e cria um perfil de aderência exclusivo. Ele se atualiza conforme você ajusta metas e patrimônio.',
+    icon: '🎯',
   },
   {
-    title: 'Passo 2 – Você registra seus investimentos atuais (se já tiver)',
-    description:
-      'Adicione seus ativos — ações, FIIs, ETFs, renda fixa ou ativos internacionais. Nós organizamos tudo automaticamente e mostramos o quanto você tem hoje, quanto já lucrou e a sua rentabilidade real.',
+    title: 'Leitura da carteira',
+    summary: 'Importe ou registre ativos e nós os categorizamos automaticamente em segundos.',
+    detail:
+      'A identificação mapeia exposição por setor, classe de risco e concentração. Assim você entende os pontos fortes e os gargalos da carteira.',
+    icon: '📊',
   },
   {
-    title: 'Passo 3 – O sistema monta sua estratégia personalizada',
-    description:
-      'Depois da triagem e da leitura da sua carteira atual, o algoritmo calcula seu score de investidor, a aderência dos ativos ao seu perfil, o risco aceitável, as oportunidades e sugestões de alocação e rebalanceamento.',
+    title: 'Estratégia montada pra você',
+    summary: 'Receba sugestões de alocação, rebalanceamento e score de cada ativo sem planilhas.',
+    detail:
+      'Mostramos oportunidades alinhadas ao seu perfil, projeções de crescimento e alertas quando algo sai da rota ideal.',
+    icon: '🧠',
   },
   {
-    title: 'Passo 4 – Acompanhe tudo em tempo real',
-    description:
-      'Veja preços atualizados automaticamente com base no Yahoo Finance: gráficos, indicadores, projeções, variações e insights práticos. Tudo em um dashboard claro e objetivo.',
+    title: 'Acompanhamento contínuo',
+    summary: 'Monitore performance, fluxo de caixa e riscos em tempo real direto do dashboard.',
+    detail:
+      'Com dados atualizados, você acompanha metas, vê alertas inteligentes e recebe insights acionáveis para decidir com tranquilidade.',
+    icon: '📈',
   },
 ];
 
 const HowItWorks = () => {
   return (
-    <section id="como-funciona" className="bg-slate-900/60 py-16">
-      <div className="mx-auto max-w-6xl px-6">
-        <h2 className="text-center text-3xl font-semibold text-white sm:text-4xl">Como funciona na prática?</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {steps.map((step, index) => (
-            <article
-              key={step.title}
-              className={`group flex flex-col rounded-3xl border border-slate-800/70 bg-slate-950/70 p-6 text-slate-200 shadow transition-transform duration-200 hover:-translate-y-1 hover:shadow-xl ${
-                step.highlight ? 'border-mint/60 bg-slate-950/90 shadow-lg' : ''
-              }`}
-            >
-              <div
-                className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold ${
-                  step.highlight
-                    ? 'bg-mint/20 text-mint ring-2 ring-inset ring-mint/40'
-                    : 'bg-slate-800 text-slate-200'
-                }`}
+    <section id="como-funciona" className="py-16 sm:py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="text-center">
+          <span className="text-sm font-semibold uppercase tracking-wider text-mint">Experiência guiada</span>
+          <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-slate-50">Como o FishStocks funciona</h2>
+          <p className="mx-auto mt-4 max-w-3xl text-base text-slate-600 sm:text-lg dark:text-slate-300">
+            Cada etapa combina inteligência de dados e orientação prática para que você tenha clareza desde a primeira interação até o acompanhamento diário.
+          </p>
+        </div>
+        <div className="mt-10 overflow-x-auto pb-2">
+          <div className="flex min-w-full gap-6 pr-4 md:pr-6">
+            {highlights.map((highlight) => (
+              <article
+                key={highlight.title}
+                className="group relative flex w-72 shrink-0 flex-col gap-4 rounded-3xl border border-slate-200 bg-white/80 p-6 text-left shadow-sm transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg dark:border-slate-700 dark:bg-slate-900/60 sm:w-80"
               >
-                {index + 1}
-              </div>
-              <h3 className="text-lg font-semibold text-white">{step.title}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-slate-300">{step.description}</p>
-            </article>
-          ))}
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-mint/20 text-lg">
+                  <span aria-hidden>{highlight.icon}</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50">{highlight.title}</h3>
+                  <p className="mt-2 text-sm text-slate-600 line-clamp-2 sm:text-base dark:text-slate-300">{highlight.summary}</p>
+                  <p className="mt-2 max-h-0 overflow-hidden text-sm text-slate-600 opacity-0 transition-all duration-200 ease-out group-hover:max-h-40 group-hover:opacity-100 dark:text-slate-300">
+                    {highlight.detail}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
