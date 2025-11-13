@@ -1,4 +1,8 @@
-const Header = () => {
+type HeaderProps = {
+  onEnter?: () => void;
+};
+
+const Header = ({ onEnter }: HeaderProps) => {
   return (
     <header className="sticky top-0 z-20 w-full border-b border-slate-800 bg-slate-900/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -16,12 +20,22 @@ const Header = () => {
             Contato
           </a>
         </nav>
-        <a
-          className="rounded-full border border-mint/70 bg-mint px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-mint/90 hover:shadow-md md:text-sm"
-          href="#contato"
-        >
-          Entrar
-        </a>
+        {onEnter ? (
+          <button
+            type="button"
+            onClick={onEnter}
+            className="rounded-full border border-mint/70 bg-mint px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-mint/90 hover:shadow-md md:text-sm"
+          >
+            Entrar
+          </button>
+        ) : (
+          <a
+            className="rounded-full border border-mint/70 bg-mint px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-mint/90 hover:shadow-md md:text-sm"
+            href="#contato"
+          >
+            Entrar
+          </a>
+        )}
       </div>
       <div className="md:hidden">
         <nav className="flex items-center justify-center gap-6 pb-4 text-xs font-medium text-slate-300">

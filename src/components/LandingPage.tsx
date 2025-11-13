@@ -4,10 +4,14 @@ import HowItWorks from './HowItWorks';
 import FeaturesCarousel from './FeaturesCarousel';
 import Footer from './Footer';
 
-const LandingPage = () => {
+type LandingPageProps = {
+  onEnter: () => void;
+};
+
+const LandingPage = ({ onEnter }: LandingPageProps) => {
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900">
-      <Header />
+      <Header onEnter={onEnter} />
       <Hero />
       <HowItWorks />
       <section id="seguranca" className="py-20">
