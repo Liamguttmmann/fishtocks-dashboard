@@ -1,16 +1,16 @@
 const Footer = () => {
   return (
-    <footer className="border-t border-slate-800 bg-slate-900/80 py-8">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-center text-xs text-slate-400 md:flex-row md:text-left">
-        <span className="font-medium text-slate-300">FishStocks © 2025</span>
-        <nav className="flex flex-wrap items-center justify-center gap-4 text-slate-400">
-          <a className="transition hover:text-mint" href="#termos">
+    <footer className="border-t border-slate-200 bg-white py-8">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-center text-xs text-slate-500 md:flex-row md:text-left">
+        <span className="font-medium text-slate-700">FishStocks © 2025</span>
+        <nav className="flex flex-wrap items-center justify-center gap-4 text-slate-500">
+          <a className="transition hover:text-emerald-700" href="#termos">
             Termos de Uso
           </a>
-          <a className="transition hover:text-mint" href="#privacidade">
+          <a className="transition hover:text-emerald-700" href="#privacidade">
             Política de Privacidade
           </a>
-          <a className="transition hover:text-mint" href="#contato">
+          <a className="transition hover:text-emerald-700" href="#contato">
             Contato
           </a>
         </nav>
