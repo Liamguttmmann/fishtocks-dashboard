@@ -63,22 +63,22 @@ const FeaturesCarousel = () => {
   };
 
   return (
-    <section className="py-20">
+    <section className="bg-slate-50 py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-center text-center">
-          <h2 className="text-3xl font-semibold text-white sm:text-4xl">O que o FishStocks entrega na prática</h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-300">
+          <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">O que o FishStocks entrega na prática</h2>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600">
             Conheça os diferenciais que tornam o FishStocks uma plataforma completa para acompanhar, organizar e decidir seus investimentos.
           </p>
         </div>
         <div className="relative mt-12">
-          <div className="overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             <div className="flex transition-transform duration-500 ease-out" style={{ transform: `translateX(-${safeCurrent * 100}%)` }}>
               {slides.map((slide, index) => (
-                <article key={slide.title} className="w-full shrink-0 px-2 sm:px-8" aria-hidden={index !== safeCurrent}>
-                  <div className="mx-auto h-full max-w-3xl rounded-3xl border border-slate-800/70 bg-slate-950/80 p-10 text-left text-slate-200 shadow-lg transition hover:shadow-2xl">
-                    <h3 className="text-2xl font-semibold text-white">{slide.title}</h3>
-                    <p className="mt-4 text-sm leading-relaxed text-slate-300">{slide.description}</p>
+                <article key={slide.title} className="w-full shrink-0 px-4 sm:px-10" aria-hidden={index !== safeCurrent}>
+                  <div className="mx-auto h-full max-w-3xl rounded-2xl bg-white p-8 text-left text-slate-800">
+                    <h3 className="text-2xl font-semibold text-slate-900">{slide.title}</h3>
+                    <p className="mt-4 text-sm leading-relaxed text-slate-700">{slide.description}</p>
                   </div>
                 </article>
               ))}
@@ -87,7 +87,7 @@ const FeaturesCarousel = () => {
           <button
             type="button"
             onClick={() => goTo(safeCurrent - 1)}
-            className="absolute left-0 top-1/2 hidden -translate-y-1/2 rounded-full border border-slate-700 bg-slate-900/80 p-3 text-slate-200 transition hover:border-mint hover:text-mint md:inline-flex"
+            className="absolute left-0 top-1/2 hidden -translate-y-1/2 rounded-full border border-slate-200 bg-white p-3 text-slate-600 shadow-md transition hover:border-emerald-300 hover:text-emerald-700 md:inline-flex"
             aria-label="Slide anterior"
           >
             ‹
@@ -95,7 +95,7 @@ const FeaturesCarousel = () => {
           <button
             type="button"
             onClick={() => goTo(safeCurrent + 1)}
-            className="absolute right-0 top-1/2 hidden -translate-y-1/2 rounded-full border border-slate-700 bg-slate-900/80 p-3 text-slate-200 transition hover:border-mint hover:text-mint md:inline-flex"
+            className="absolute right-0 top-1/2 hidden -translate-y-1/2 rounded-full border border-slate-200 bg-white p-3 text-slate-600 shadow-md transition hover:border-emerald-300 hover:text-emerald-700 md:inline-flex"
             aria-label="Próximo slide"
           >
             ›
@@ -105,7 +105,7 @@ const FeaturesCarousel = () => {
               <button
                 key={index}
                 onClick={() => goTo(index)}
-                className={`h-2.5 w-2.5 rounded-full transition ${index === safeCurrent ? 'bg-mint' : 'bg-slate-700 hover:bg-slate-500'}`}
+                className={`h-2.5 w-2.5 rounded-full transition ${index === safeCurrent ? 'bg-emerald-500' : 'bg-slate-300 hover:bg-slate-400'}`}
                 aria-label={`Ir para o slide ${index + 1}`}
               />
             ))}
