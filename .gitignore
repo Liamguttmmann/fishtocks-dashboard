@@ -1,0 +1,12 @@
+node_modules
+.dist
+
+# Build outputs
+/dist
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Vite generated files
+vite.config.d.ts
+vite.config.js

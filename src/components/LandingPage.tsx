@@ -1,13 +1,38 @@
+import { useEffect, useState } from 'react';
+
 import Header from './Header';
 import Hero from './Hero';
 import HowItWorks from './HowItWorks';
 import FeaturesCarousel from './FeaturesCarousel';
 import Footer from './Footer';
+import TriagemModal from './TriagemModal';
 
 const LandingPage = () => {
+  const [isTriagemOpen, setIsTriagemOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDarkMode) {
+      root.classList.add('dark');
+      root.style.colorScheme = 'dark';
+    } else {
+      root.classList.remove('dark');
+      root.style.colorScheme = 'light';
+    }
+  }, [isDarkMode]);
+
+  const pageBackground = isDarkMode
+    ? 'bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-slate-100'
+    : 'bg-gradient-to-b from-slate-50 via-white to-slate-100 text-slate-900';
+
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900">
-      <Header />
+    <div className={`flex min-h-screen flex-col ${pageBackground}`}>
+      <Header
+        onLoginClick={() => setIsTriagemOpen(true)}
+        onToggleTheme={() => setIsDarkMode((prev) => !prev)}
+        isDarkMode={isDarkMode}
+      />
       <Hero />
       <HowItWorks />
       <section id="seguranca" className="py-20">
@@ -62,6 +87,7 @@ const LandingPage = () => {
         </div>
       </section>
       <Footer />
+      <TriagemModal isOpen={isTriagemOpen} onClose={() => setIsTriagemOpen(false)} />
     </div>
   );
 };
