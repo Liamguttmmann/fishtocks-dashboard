@@ -4,7 +4,11 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "types": []
   },
   "include": ["vite.config.ts"]
 }
