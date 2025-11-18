@@ -2,34 +2,40 @@ import { TouchEvent, useMemo, useRef, useState } from 'react';
 
 type Slide = {
   title: string;
-  description: string;
+  summary: string;
+  detail: string;
 };
 
 const slides: Slide[] = [
   {
     title: 'Carteira organizada automaticamente',
-    description:
-      'Tenha todos os seus investimentos reunidos em um lugar só, separados por tipo, objetivo, risco e desempenho. Veja quanto você colocou, quanto rendeu, quanto perdeu e como está distribuída sua carteira — tudo sem planilhas bagunçadas.',
+    summary: 'Os ativos entram classificados por classe, objetivo e risco para você enxergar o todo sem esforço.',
+    detail:
+      'A plataforma calcula aportes, rentabilidade e concentração e sugere reorganizações em segundos — sem planilhas intermináveis.',
   },
   {
     title: 'Score dos ativos e aderência ao seu perfil',
-    description:
-      'Cada ativo recebe um score objetivo de acordo com fundamentos, momento de mercado e risco. Além disso, você vê o quanto ele combina com o seu perfil de investidor. Você também recebe alertas quando um ativo deixa de ser ideal, recomendações de “comprar, segurar ou esperar” e justificativas claras do porquê daquela nota.',
+    summary: 'Cada ativo recebe nota automática e mostra o quanto combina com seu perfil investidor.',
+    detail:
+      'Recomendações de comprar, segurar ou esperar vêm com justificativas claras e alertas quando o risco sobe ou cai demais.',
   },
   {
     title: 'Acompanhamento em tempo real com dados oficiais',
-    description:
-      'O app atualiza automaticamente seus ativos usando dados do Yahoo Finance. Você enxerga preço atual, variação diária, desempenho histórico, ranking de desempenho, projeções e gráficos simples para entender rapidamente o cenário.',
+    summary: 'Cotações, variações e gráficos são atualizados automaticamente via dados oficiais do mercado.',
+    detail:
+      'Veja histórico, projeções e ranking de performance com contexto para agir rápido mesmo longe do home broker.',
   },
   {
     title: 'Metas e objetivos financeiros claros',
-    description:
-      'Crie objetivos como reserva de emergência, carro, intercâmbio ou independência financeira. O app calcula automaticamente quanto falta, quanto investir por mês, o tempo estimado para alcançar e se você está acima ou abaixo do ritmo ideal.',
+    summary: 'Defina objetivos e receba planos de aporte com status sempre atualizado.',
+    detail:
+      'Acompanhamos o ritmo ideal, avisamos atrasos e sugerimos ajustes para manter suas metas no tempo certo.',
   },
   {
     title: 'Painel lateral inteligente em tempo real',
-    description:
-      'O FishStocks conta com um painel lateral sempre visível — uma barra fina no canto esquerdo da tela que exibe, em tempo real, o logo, o ticket e o preço dos seus principais ativos. Basta olhar para o lado para acompanhar o mercado ao vivo, de qualquer lugar do aplicativo. Com um único clique, esse painel se expande e mostra um mini-painel interativo com mais detalhes do ativo. A partir daí, você pode abrir o pop-up de análise completa ou a tela de trade, sem precisar sair da tela atual. É uma forma rápida e visual de acompanhar o mercado enquanto navega pelo app.',
+    summary: 'Uma barra lateral sempre visível mostra logo, ticket e preço dos ativos favoritos.',
+    detail:
+      'Um clique expande para exibir histórico, atalhos de análise e opções de trade — tudo sem sair da tela principal.',
   },
 ];
 
@@ -63,11 +69,11 @@ const FeaturesCarousel = () => {
   };
 
   return (
-    <section className="py-20">
+    <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-center text-center">
-          <h2 className="text-3xl font-semibold text-white sm:text-4xl">O que o FishStocks entrega na prática</h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-300">
+          <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-slate-50">O que o FishStocks entrega na prática</h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">
             Conheça os diferenciais que tornam o FishStocks uma plataforma completa para acompanhar, organizar e decidir seus investimentos.
           </p>
         </div>
@@ -75,10 +81,13 @@ const FeaturesCarousel = () => {
           <div className="overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             <div className="flex transition-transform duration-500 ease-out" style={{ transform: `translateX(-${safeCurrent * 100}%)` }}>
               {slides.map((slide, index) => (
-                <article key={slide.title} className="w-full shrink-0 px-2 sm:px-8" aria-hidden={index !== safeCurrent}>
-                  <div className="mx-auto h-full max-w-3xl rounded-3xl border border-slate-800/70 bg-slate-950/80 p-10 text-left text-slate-200 shadow-lg transition hover:shadow-2xl">
-                    <h3 className="text-2xl font-semibold text-white">{slide.title}</h3>
-                    <p className="mt-4 text-sm leading-relaxed text-slate-300">{slide.description}</p>
+                <article key={slide.title} className="w-full shrink-0 px-3 sm:px-8" aria-hidden={index !== safeCurrent}>
+                  <div className="group mx-auto h-full max-w-3xl rounded-3xl border border-slate-200 bg-white/90 p-8 text-left shadow-md transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-900/70">
+                    <h3 className="text-2xl font-semibold text-slate-900 dark:text-slate-50">{slide.title}</h3>
+                    <p className="mt-4 text-sm text-slate-600 sm:text-base dark:text-slate-300">{slide.summary}</p>
+                    <p className="mt-3 max-h-0 overflow-hidden text-sm text-slate-600 opacity-0 transition-all duration-200 ease-out group-hover:max-h-40 group-hover:opacity-100 dark:text-slate-300">
+                      {slide.detail}
+                    </p>
                   </div>
                 </article>
               ))}
@@ -87,7 +96,7 @@ const FeaturesCarousel = () => {
           <button
             type="button"
             onClick={() => goTo(safeCurrent - 1)}
-            className="absolute left-0 top-1/2 hidden -translate-y-1/2 rounded-full border border-slate-700 bg-slate-900/80 p-3 text-slate-200 transition hover:border-mint hover:text-mint md:inline-flex"
+            className="absolute left-0 top-1/2 hidden -translate-y-1/2 rounded-full border border-slate-300 bg-white/90 p-3 text-slate-600 shadow-sm transition-all duration-150 hover:text-slate-900 hover:shadow-md md:inline-flex dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200"
             aria-label="Slide anterior"
           >
             ‹
@@ -95,7 +104,7 @@ const FeaturesCarousel = () => {
           <button
             type="button"
             onClick={() => goTo(safeCurrent + 1)}
-            className="absolute right-0 top-1/2 hidden -translate-y-1/2 rounded-full border border-slate-700 bg-slate-900/80 p-3 text-slate-200 transition hover:border-mint hover:text-mint md:inline-flex"
+            className="absolute right-0 top-1/2 hidden -translate-y-1/2 rounded-full border border-slate-300 bg-white/90 p-3 text-slate-600 shadow-sm transition-all duration-150 hover:text-slate-900 hover:shadow-md md:inline-flex dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200"
             aria-label="Próximo slide"
           >
             ›
@@ -105,7 +114,7 @@ const FeaturesCarousel = () => {
               <button
                 key={index}
                 onClick={() => goTo(index)}
-                className={`h-2.5 w-2.5 rounded-full transition ${index === safeCurrent ? 'bg-mint' : 'bg-slate-700 hover:bg-slate-500'}`}
+                className={`h-2.5 w-2.5 rounded-full transition ${index === safeCurrent ? 'bg-mint' : 'bg-slate-300 hover:bg-slate-400 dark:bg-slate-700 dark:hover:bg-slate-600'}`}
                 aria-label={`Ir para o slide ${index + 1}`}
               />
             ))}
