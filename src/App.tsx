@@ -1,19 +1,20 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import React from 'react';
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
+      <div className="p-8 rounded-2xl shadow-xl bg-slate-800 max-w-lg text-center">
+        <h1 className="text-3xl font-bold mb-4">
+          Fishtocks Dashboard 🎣
+        </h1>
+        <p className="text-slate-300 mb-2">
+          Se você está vendo essa tela, o React + Vite estão funcionando certinho.
+        </p>
+        <p className="text-slate-400 text-sm">
+          Depois daqui a gente começa a montar a interface de verdade.
+        </p>
+      </div>
+    </div>
   );
 };
 

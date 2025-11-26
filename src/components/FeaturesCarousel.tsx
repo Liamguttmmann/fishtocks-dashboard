@@ -1,25 +1,46 @@
 const FeaturesCarousel = () => {
-  const features = [
-    { emoji: '📊', title: 'Gráficos em tempo real', desc: 'Acompanhe a evolução do seu patrimônio' },
-    { emoji: '🔔', title: 'Alertas personalizados', desc: 'Seja notificado sobre suas ações' },
-    { emoji: '📈', title: 'Análise de performance', desc: 'Veja como seus investimentos estão performando' },
-    { emoji: '🔒', title: 'Segurança total', desc: 'Seus dados protegidos com criptografia' },
-  ];
-
+  // Por enquanto é um "falso carrossel": só uma faixa horizontal.
+  // Depois dá pra trocar por algo com swipe / setinhas se quiser.
   return (
-    <section className="bg-slate-50 py-20">
-      <div className="mx-auto max-w-6xl px-6">
-        <h2 className="text-center text-3xl font-bold text-slate-900 sm:text-4xl">Recursos principais</h2>
-        <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-lg">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, idx) => (
-              <div key={idx} className="text-center">
-                <div className="text-4xl">{feature.emoji}</div>
-                <h3 className="mt-4 text-lg font-semibold text-slate-900">{feature.title}</h3>
-                <p className="mt-2 text-sm text-slate-600">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
+    <section className="border-y border-slate-200 bg-slate-50/70 py-10">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 sm:flex-row sm:items-stretch sm:gap-6">
+        <div className="flex-1 rounded-3xl bg-white p-5 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-500">
+            Triagem inteligente
+          </p>
+          <h3 className="mt-2 text-lg font-semibold text-slate-900">
+            Entenda seu perfil em poucos minutos
+          </h3>
+          <p className="mt-2 text-sm text-slate-600">
+            Uma triagem guiada que cruza renda, objetivos e tolerância a risco para
+            montar um perfil de investidor realmente fiel à sua realidade.
+          </p>
+        </div>
+
+        <div className="flex-1 rounded-3xl bg-white p-5 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-500">
+            Conexão com mercado
+          </p>
+          <h3 className="mt-2 text-lg font-semibold text-slate-900">
+            Dados em tempo real do Yahoo Finance
+          </h3>
+          <p className="mt-2 text-sm text-slate-600">
+            Visualize cotações, variação e indicadores principais sem sair da plataforma,
+            usando dados consolidados do Yahoo Finance.
+          </p>
+        </div>
+
+        <div className="flex-1 rounded-3xl bg-white p-5 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-500">
+            Visão de carteira
+          </p>
+          <h3 className="mt-2 text-lg font-semibold text-slate-900">
+            Dashboard claro de ganhos e perdas
+          </h3>
+          <p className="mt-2 text-sm text-slate-600">
+            Acompanhe rentabilidade líquida, concentração por ativo e evolução da carteira
+            em um painel único e fácil de entender.
+          </p>
         </div>
       </div>
     </section>

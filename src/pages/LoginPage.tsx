@@ -1,13 +1,33 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, FormEvent } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 const LoginPage = () => {
-  const handleGoogleLogin = () => {
-    alert('Login com Google será implementado em breve!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const { loginWithEmail, loginWithGoogle } = useAuth();
+  const navigate = useNavigate();
+
+  const handleEmailLogin = async (e: FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    try {
+      await loginWithEmail(email, password);
+      navigate('/onboarding');
+    } catch (err) {
+      setError('Não foi possível entrar. Verifique seus dados e tente novamente.');
+    }
   };
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert('Login será implementado em breve!');
+  const handleGoogleLogin = async () => {
+    setError(null);
+    try {
+      await loginWithGoogle();
+      navigate('/onboarding');
+    } catch (err) {
+      setError('Falha ao entrar com Google. Tente novamente em instantes.');
+    }
   };
 
   return (
@@ -23,7 +43,7 @@ const LoginPage = () => {
             <Link to="/" className="inline-block text-2xl font-bold text-slate-900 hover:text-emerald-600 transition">
               FishStocks
             </Link>
-            <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-emerald-700">Acesso seguro</p>
+            <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-emerald-700">Entrar na sua conta</p>
             <h1 className="mt-4 text-3xl font-bold text-slate-900">Bem-vindo de volta</h1>
             <p className="mt-2 text-sm text-slate-600">
               Não tem uma conta?{' '}
@@ -32,6 +52,12 @@ const LoginPage = () => {
               </Link>
             </p>
           </div>
+
+          {error && (
+            <div className="mt-6 rounded-2xl bg-red-50 border border-red-200 p-4">
+              <p className="text-sm text-red-600">{error}</p>
+            </div>
+          )}
 
           <div className="mt-8">
             <button
@@ -57,7 +83,7 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleEmailLogin} className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium text-slate-700">
                 E-mail
@@ -66,6 +92,8 @@ const LoginPage = () => {
                 id="email"
                 type="email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="voce@exemplo.com"
                 className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none ring-emerald-200 transition focus:border-emerald-300 focus:ring"
               />
@@ -79,18 +107,29 @@ const LoginPage = () => {
                 id="password"
                 type="password"
                 required
-                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Digite sua senha"
                 className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none ring-emerald-200 transition focus:border-emerald-300 focus:ring"
               />
             </div>
 
-            <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2">
-                <input type="checkbox" className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500" />
-                <span className="text-slate-600">Lembrar-me</span>
-              </label>
-              <Link to="/forgot-password" className="font-semibold text-emerald-600 hover:text-emerald-700">
-                Esqueci a senha
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="remember"
+                  type="checkbox"
+                  className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                />
+                <label htmlFor="remember" className="ml-2 text-sm text-slate-600">
+                  Lembrar-me
+                </label>
+              </div>
+              <Link
+                to="/forgot-password"
+                className="text-sm font-semibold text-emerald-600 hover:text-emerald-700"
+              >
+                Esqueceu a senha?
               </Link>
             </div>
 
